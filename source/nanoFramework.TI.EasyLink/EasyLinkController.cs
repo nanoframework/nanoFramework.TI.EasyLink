@@ -29,6 +29,10 @@ namespace nanoFramework.TI.EasyLink
         private bool _disposed = false;
 
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        // this is a flag to signal that the Initialize() method has been successfully called
+        private bool _initialized = false;
+
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
         private readonly PhyType _phyType;
 
 #pragma warning disable S2933 // this field is updated in a method and can't be readonly
@@ -40,6 +44,12 @@ namespace nanoFramework.TI.EasyLink
         /// 
         /// </summary>
         public PhyType PhyType => _phyType;
+
+        /// <summary>
+        /// Provides information if the EasyLink layer has been successfully initialized by calling <see cref="Initialize"/>.
+        /// </summary>
+        /// <returns><see langword="true"/> if the EasyLink has been successfully initialized.</returns>
+        public bool IsInitialized => _initialized;
 
         /// <summary>
         /// Absolute radio time.
@@ -67,8 +77,7 @@ namespace nanoFramework.TI.EasyLink
         }
 
         /// <summary>
-        /// Sets/gets the radio frequency in units of kHz.
-        /// When setting the radio frequency the value will be rounded to the nearest frequency supported by the Frequency Synthesizer.
+        /// Gets the radio frequency in units of kHz.
         /// The returned frequency is value set in the Frequency Synthesizer and may not be exactly the same that was set.
         /// </summary>
         /// <remarks>
@@ -79,20 +88,12 @@ namespace nanoFramework.TI.EasyLink
         {
             [MethodImpl(MethodImplOptions.InternalCall)]
             get;
-
-            [MethodImpl(MethodImplOptions.InternalCall)]
-            set;
         }
 
         /// <summary>
-        /// Sets/gets the Tx Power in dBm.
-        /// Accepted values range from -10 to 14 dBm, depending on the platform.
+        /// Gets the Tx Power in dBm.
         /// </summary>
         /// <remarks>
-        /// All platforms other than the CC1352P: Value of -10 dBm or values in the range of 0-14 dBm are accepted. 
-        /// Values above 14 are set to 14 dBm while those below 0 are set to -10 dBm.
-        /// CC1352P Default PA: -20 to 14 dBm. Values above 14 dBm will be set to 14 dBm, while values below -20 dBm will cause a configuration error.
-        /// CC1352P High PA: 14 to 20 dBm. Values above 20 dBm will be set to 20 dBm, while values below 14 dBm will cause a configuration error.
         /// This value does not include any offsets for deviations due to factors such as temperature and hence this API
         /// should not be used to get an accurate measure of frequency.
         /// </remarks>
@@ -100,9 +101,6 @@ namespace nanoFramework.TI.EasyLink
         {
             [MethodImpl(MethodImplOptions.InternalCall)]
             get;
-
-            [MethodImpl(MethodImplOptions.InternalCall)]
-            set;
         }
 
         /// <summary>
@@ -131,14 +129,31 @@ namespace nanoFramework.TI.EasyLink
         }
 
         /// <summary>
-        /// Initializes the EsayLink module.
+        /// Initializes the EsayLink layer.
         /// </summary>
         /// <returns>The operation result.</returns>
         public Status Initialize()
         {
             lock (_syncLock)
             {
-                return (Status)InitNative();
+                if (_initialized)
+                {
+                    return Status.Success;
+                }
+                else
+                {
+                    byte initResult = InitNative();
+                    if (initResult == (byte)Status.Success)
+                    {
+                        _initialized = true;
+
+                        return Status.Success;
+                    }
+                    else
+                    {
+                        return (Status)initResult;
+                    }
+                }
             }
         }
 
@@ -151,7 +166,14 @@ namespace nanoFramework.TI.EasyLink
         {
             lock (_syncLock)
             {
-                return (Status)TransmitNative(packet, Timeout.Infinite, 0);
+                if (_initialized)
+                {
+                    return (Status)TransmitNative(packet, Timeout.Infinite, 0);
+                }
+                else
+                {
+                    return Status.ConfigurationError;
+                }
             }
         }
 
@@ -168,7 +190,14 @@ namespace nanoFramework.TI.EasyLink
         {
             lock (_syncLock)
             {
-                return (Status)TransmitNative(packet, timeout, dueTime);
+                if (_initialized)
+                {
+                    return (Status)TransmitNative(packet, timeout, dueTime);
+                }
+                else
+                {
+                    return Status.ConfigurationError;
+                }
             }
         }
 
@@ -182,7 +211,16 @@ namespace nanoFramework.TI.EasyLink
         {
             lock (_syncLock)
             {
-                return (Status)ReceiveNative(out packet, Timeout.Infinite);
+                if (_initialized)
+                {
+                    return (Status)ReceiveNative(out packet, Timeout.Infinite);
+                }
+                else
+                {
+                    packet = null;
+
+                    return Status.ConfigurationError;
+                }
             }
         }
 
@@ -198,7 +236,16 @@ namespace nanoFramework.TI.EasyLink
         {
             lock (_syncLock)
             {
-                return (Status)ReceiveNative(out packet, timeout);
+                if (_initialized)
+                {
+                    return (Status)ReceiveNative(out packet, timeout);
+                }
+                else
+                {
+                    packet = null;
+
+                    return Status.ConfigurationError;
+                }
             }
         }
 
@@ -212,7 +259,14 @@ namespace nanoFramework.TI.EasyLink
         {
             lock (_syncLock)
             {
-                return (Status)SetConfigurationNative(option, value);
+                if (_initialized)
+                {
+                    return (Status)SetConfigurationNative(option, value);
+                }
+                else
+                {
+                    return Status.ConfigurationError;
+                }
             }
         }
 
@@ -236,12 +290,14 @@ namespace nanoFramework.TI.EasyLink
         /// </remarks>
         public void AddAddressToFilter(byte[] address)
         {
-            lock(_addressFilter)
-            if(!_addressFilter.Contains(address))
+            lock (_addressFilter)
             {
-                _addressFilter.Add(address);
+                if (!_addressFilter.Contains(address))
+                {
+                    _addressFilter.Add(address);
 
-                UpdateRxAddressFilterNative();
+                    UpdateRxAddressFilterNative();
+                }
             }
         }
 
@@ -261,12 +317,63 @@ namespace nanoFramework.TI.EasyLink
             }
         }
 
+        /// <summary>
+        /// Sets the radio frequency in units of kHz.
+        /// When setting the radio frequency the value will be rounded to the nearest frequency supported by the frequency synthesizer.
+        /// </summary>
+        /// <remarks>
+        /// In order to set the frequency the EasyLink layer has to have been previously initialized with <see cref="Initialize"/>.
+        /// </remarks>
+        public Status SetFrequency(uint frequency)
+        {
+            lock (_syncLock)
+            {
+                if (_initialized)
+                {
+                    return (Status)SetFrequencyNative(frequency);
+                }
+                else
+                {
+                    return Status.ConfigurationError;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the Tx Power in dBm.
+        /// Accepted values range from -20 to 20 dBm, depending on the platform.
+        /// All platforms other than the CC1352P: Value of -10 dBm or values in the range of 0-14 dBm are accepted. 
+        /// Values above 14 are set to 14 dBm while those below 0 are set to -10 dBm.
+        /// CC1352P Default PA: -20 to 14 dBm. Values above 14 dBm will be set to 14 dBm, while values below -20 dBm will cause a configuration error.
+        /// CC1352P High PA: 14 to 20 dBm. Values above 20 dBm will be set to 20 dBm, while values below 14 dBm will cause a configuration error.
+        /// </summary>
+        /// <remarks>
+        /// In order to set the Tx Power the EasyLink layer has to have been previously initialized with <see cref="Initialize"/>.
+        /// The PA mode is chosen at build time, run-time switching from high PA to default PA (or vice versa) is not supported.
+        /// </remarks>
+        public Status SetRfPower(sbyte rfPower)
+        {
+            lock (_syncLock)
+            {
+                if (_initialized)
+                {
+                    return (Status)SetRfPowerNative(rfPower);
+                }
+                else
+                {
+                    return Status.ConfigurationError;
+                }
+            }
+        }
+
         #region IDisposable Support
 
         void Dispose(bool disposing)
         {
             if (!_disposed)
             {
+                _initialized = false;
+
                 DisposeNative();
 
                 _disposed = true;
@@ -300,16 +407,22 @@ namespace nanoFramework.TI.EasyLink
         private extern void UpdateRxAddressFilterNative();
 
         [MethodImpl(MethodImplOptions.InternalCall)]
-        private extern int InitNative();
+        private extern byte InitNative();
 
         [MethodImpl(MethodImplOptions.InternalCall)]
-        private extern int ReceiveNative(out ReceivedPacket packet, int timeout);
+        private extern byte ReceiveNative(out ReceivedPacket packet, int timeout);
 
         [MethodImpl(MethodImplOptions.InternalCall)]
-        private extern int SetConfigurationNative(ControlOption option, uint value);
+        private extern byte SetConfigurationNative(ControlOption option, uint value);
 
         [MethodImpl(MethodImplOptions.InternalCall)]
-        private extern int TransmitNative(TransmitPacket packet, int timeout, int dueTime);
+        private extern byte SetFrequencyNative(uint frequency);
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        private extern byte SetRfPowerNative(sbyte rfPower);
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        private extern byte TransmitNative(TransmitPacket packet, int timeout, int dueTime);
 
         #endregion
     }
