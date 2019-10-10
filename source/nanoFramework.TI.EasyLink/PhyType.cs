@@ -30,11 +30,6 @@ namespace nanoFramework.TI.EasyLink
         _50kbps2gfsk = 1,
 
         /// <summary>
-        /// Sub1G 625bps data rate, Long Range Mode
-        /// </summary>
-        _625bpsLrm = 2,
-
-        /// <summary>
         /// 2.4Ghz 200kbps data rate, IEEE 802.15.4g GFSK.
         /// </summary>
         _2_4_200kbps2gfsk = 3,
