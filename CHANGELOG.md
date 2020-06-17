@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.2.0](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/tree/v1.2.0) (2020-06-12)
+
+[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/compare/v1.2.0-preview.19...v1.2.0)
+
+**Documentation and other chores:**
+
+- Release release-v1.2.0 [\#20](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/pull/20)
+
 ## [v1.2.0-preview.19](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/tree/v1.2.0-preview.19) (2020-06-11)
 
 [Full Changelog](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/compare/v1.2.0-preview.17...v1.2.0-preview.19)
