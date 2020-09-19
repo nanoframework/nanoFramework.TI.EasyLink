@@ -2,7 +2,31 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/compare/v1.2.0-preview.17...HEAD)
+[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/compare/v1.3.0...HEAD)
+
+**Documentation and other chores:**
+
+- Update dependencies [\#22](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/pull/22)
+
+## [v1.3.0](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/tree/v1.3.0) (2020-06-17)
+
+[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/compare/v1.2.0...v1.3.0)
+
+**Documentation and other chores:**
+
+- Release release-v1.3.0 [\#21](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/pull/21)
+
+## [v1.2.0](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/tree/v1.2.0) (2020-06-12)
+
+[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/compare/v1.2.0-preview.19...v1.2.0)
+
+**Documentation and other chores:**
+
+- Release release-v1.2.0 [\#20](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/pull/20)
+
+## [v1.2.0-preview.19](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/tree/v1.2.0-preview.19) (2020-06-11)
+
+[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/compare/v1.2.0-preview.17...v1.2.0-preview.19)
 
 **Documentation and other chores:**
 
