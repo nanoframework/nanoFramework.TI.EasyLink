@@ -33,6 +33,15 @@
     <Name>nanoFramework.TI.EasyLink</Name>
   </PropertyGroup>
   <ItemGroup>
+    <NFMDP_PE_ExcludeClassByName Include="ControlOption">
+      <InProject>false</InProject>
+    </NFMDP_PE_ExcludeClassByName>
+    <NFMDP_PE_ExcludeClassByName Include="PhyType">
+      <InProject>false</InProject>
+    </NFMDP_PE_ExcludeClassByName>
+    <NFMDP_PE_ExcludeClassByName Include="Status">
+      <InProject>false</InProject>
+    </NFMDP_PE_ExcludeClassByName>
     <NFMDP_PE_ExcludeClassByName Include="ThisAssembly">
       <InProject>false</InProject>
     </NFMDP_PE_ExcludeClassByName>
