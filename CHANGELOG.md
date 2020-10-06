@@ -1,8 +1,16 @@
 # Changelog
 
-## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/tree/HEAD)
+## [v1.3.1-preview.11](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/tree/v1.3.1-preview.11) (2020-10-06)
 
-[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/compare/v1.3.1-preview.2...HEAD)
+[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/compare/v1.3.1-preview.9...v1.3.1-preview.11)
+
+**Implemented enhancements:**
+
+- Improvements in parameters and Controller initialization [\#24](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/pull/24)
+
+## [v1.3.1-preview.9](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/tree/v1.3.1-preview.9) (2020-10-01)
+
+[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/compare/v1.3.1-preview.2...v1.3.1-preview.9)
 
 **Documentation and other chores:**
 
