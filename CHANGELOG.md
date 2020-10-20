@@ -1,5 +1,13 @@
 # Changelog
 
+## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/tree/HEAD)
+
+[Full Changelog](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/compare/v1.3.1-preview.11...HEAD)
+
+**Documentation and other chores:**
+
+- Bumps nanoFramework.CoreLibrary from 1.9.0-preview.5 to 1.9.1-preview.4 [\#25](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/pull/25)
+
 ## [v1.3.1-preview.11](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/tree/v1.3.1-preview.11) (2020-10-06)
 
 [Full Changelog](https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink/compare/v1.3.1-preview.9...v1.3.1-preview.11)
