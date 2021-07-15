@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2019 The nanoFramework project contributors
+// Copyright (c) .NET Foundation and Contributors
 // Portions Copyright (c) 2015-2019 Texas Instruments Incorporated
 // See LICENSE file in the project root for full license information.
 //
@@ -115,11 +115,10 @@ namespace nanoFramework.TI.EasyLink
         /// <summary>
         /// Initializes the radio with specified Phy settings.
         /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <param name="phyTYpe"><see cref="PhyType"/> settings to initialize the radio with.</param>
         /// <remarks>
         /// </remarks>
-        public EasyLinkController(PhyType phyTYpe = PhyType._50kbps2gfsk)
+        public EasyLinkController(PhyType phyTYpe)
         {
             _phyType = phyTYpe;
 
@@ -168,7 +167,7 @@ namespace nanoFramework.TI.EasyLink
             {
                 if (_initialized)
                 {
-                    return (Status)TransmitNative(packet, Timeout.Infinite, 0);
+                    return (Status)TransmitNative(packet, Timeout.InfiniteTimeSpan, TimeSpan.Zero);
                 }
                 else
                 {
@@ -181,12 +180,24 @@ namespace nanoFramework.TI.EasyLink
         /// Sends a Packet. This method blocks execution of the current thread until the packet transmission in complete.
         /// </summary>
         /// <param name="packet">The <see cref="TransmitPacket"/> to be transmitted.</param>
+        /// <param name="timeout">The timeout value for the transmission operation to complete successfully.</param>
+        /// <param name="dueTime"> The amount of time to delay before starting the transmission.</param>
+        /// <returns>The operation result.</returns>
+        public Status Transmit(TransmitPacket packet, TimeSpan timeout)
+        {
+            return Transmit(packet, timeout, TimeSpan.Zero);
+        }
+
+        /// <summary>
+        /// Sends a Packet. This method blocks execution of the current thread until the packet transmission in complete.
+        /// </summary>
+        /// <param name="packet">The <see cref="TransmitPacket"/> to be transmitted.</param>
         /// <param name="timeout">The timeout value (in milliseconds) for the transmission operation to complete successfully.</param>
         /// <param name="dueTime"> The amount of time to delay before starting the transmission, in milliseconds. 
         /// Specify zero (0) to start the timer immediately.
         /// </param>
         /// <returns>The operation result.</returns>
-        public Status Transmit(TransmitPacket packet, int timeout, int dueTime = 0)
+        public Status Transmit(TransmitPacket packet, TimeSpan timeout, TimeSpan dueTime)
         {
             lock (_syncLock)
             {
@@ -213,7 +224,7 @@ namespace nanoFramework.TI.EasyLink
             {
                 if (_initialized)
                 {
-                    return (Status)ReceiveNative(out packet, Timeout.Infinite);
+                    return (Status)ReceiveNative(out packet, Timeout.InfiniteTimeSpan);
                 }
                 else
                 {
@@ -232,7 +243,7 @@ namespace nanoFramework.TI.EasyLink
         /// <param name="packet">The received packet.</param>
         /// <param name="timeout">The timeout value for the reception operation to complete successfully.</param>
         /// <returns>The operation result.</returns>
-        public Status Receive(out ReceivedPacket packet, int timeout)
+        public Status Receive(out ReceivedPacket packet, TimeSpan timeout)
         {
             lock (_syncLock)
             {
@@ -410,7 +421,7 @@ namespace nanoFramework.TI.EasyLink
         private extern byte InitNative();
 
         [MethodImpl(MethodImplOptions.InternalCall)]
-        private extern byte ReceiveNative(out ReceivedPacket packet, int timeout);
+        private extern byte ReceiveNative(out ReceivedPacket packet, TimeSpan timeout);
 
         [MethodImpl(MethodImplOptions.InternalCall)]
         private extern byte SetConfigurationNative(ControlOption option, uint value);
@@ -422,7 +433,7 @@ namespace nanoFramework.TI.EasyLink
         private extern byte SetRfPowerNative(sbyte rfPower);
 
         [MethodImpl(MethodImplOptions.InternalCall)]
-        private extern byte TransmitNative(TransmitPacket packet, int timeout, int dueTime);
+        private extern byte TransmitNative(TransmitPacket packet, TimeSpan timeout, TimeSpan dueTime);
 
         #endregion
     }
