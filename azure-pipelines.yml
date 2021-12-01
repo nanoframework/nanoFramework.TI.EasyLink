@@ -23,7 +23,7 @@ pool:
 
 variables:
   DOTNET_NOLOGO: true
-  solution: '**/*.sln'
+  solution: 'nanoFramework.TI.EasyLink.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   nugetPackageName: 'nanoFramework.TI.EasyLink'
