@@ -5,22 +5,22 @@
     <version>$version$</version>
     <title>nanoFramework.TI.EasyLink</title>
     <authors>nanoFramework project contributors</authors>
-    <owners>nanoFramework project contributors</owners>
+    <owners>.NET nanoFramework,dotnetfoundation</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <license type="expression">Apache-2.0</license>
+    <license type="file">LICENSE.md</license>
     <releaseNotes>
     </releaseNotes>
+    <readme>docs\README.md</readme>
     <developmentDependency>false</developmentDependency>
-    <projectUrl>https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink</projectUrl>
-    <iconUrl>https://secure.gravatar.com/avatar/97d0e092247f0716db6d4b47b7d1d1ad</iconUrl>
-    <repository type="git" url="https://github.com/nanoframework/lib-nanoFramework.TI.EasyLink" commit="$commit$" />
+    <projectUrl>https://github.com/nanoframework/nanoFramework.TI.EasyLink</projectUrl>
+    <icon>images\nf-logo.png</icon>
+    <repository type="git" url="https://github.com/nanoframework/nanoFramework.TI.EasyLink" commit="$commit$" />
     <copyright>Copyright (c) .NET Foundation and Contributors</copyright>
-    <description>This package includes the nanoFramework.TI.EasyLink assembly for nanoFramework C# projects.
-This package requires a target with nanoFramework.TI.EasyLink v$nativeVersion$.</description>
-    <summary>nanoFramework.TI.EasyLink assembly for nanoFramework C# projects</summary>
+    <description>This package includes the nanoFramework.TI.EasyLink assembly for .NET nanoFramework C# projects.
+This package requires a target with nanoFramework.TI.EasyLink v$nativeVersion$ (checksum $checksum$).</description>
     <tags>nanoFramework C# csharp netmf netnf TI EasyLink</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.10.5" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.11.7" />
     </dependencies>
   </metadata>
   <files>
@@ -29,7 +29,9 @@ This package requires a target with nanoFramework.TI.EasyLink v$nativeVersion$.<
     <file src="nanoFramework.TI.EasyLink\bin\Release\nanoFramework.TI.EasyLink.pdbx" target="lib\nanoFramework.TI.EasyLink.pdbx" />
     <file src="nanoFramework.TI.EasyLink\bin\Release\nanoFramework.TI.EasyLink.pe" target="lib\nanoFramework.TI.EasyLink.pe" />
     <file src="nanoFramework.TI.EasyLink\bin\Release\nanoFramework.TI.EasyLink.xml" target="lib\nanoFramework.TI.EasyLink.xml" />
-    <!-- readme -->
-    <file src="readme.txt" target="readme.txt" />
+    <file src="assets\readme.txt" target="" />
+    <file src="README.md" target="docs\" />
+    <file src="assets\nf-logo.png" target="images" />
+    <file src="LICENSE.md" target="" />
   </files>
 </package>
