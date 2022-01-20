@@ -2,7 +2,15 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/nanoFramework.TI.EasyLink/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/nanoFramework.TI.EasyLink/compare/v1.3.2-preview.8...HEAD)
+[Full Changelog](https://github.com/nanoframework/nanoFramework.TI.EasyLink/compare/v1.3.2-preview.10...HEAD)
+
+**Documentation and other chores:**
+
+- Update 1 NuGet dependencies [\#50](https://github.com/nanoframework/nanoFramework.TI.EasyLink/pull/50)
+
+## [v1.3.2-preview.10](https://github.com/nanoframework/nanoFramework.TI.EasyLink/tree/v1.3.2-preview.10) (2021-12-02)
+
+[Full Changelog](https://github.com/nanoframework/nanoFramework.TI.EasyLink/compare/v1.3.2-preview.8...v1.3.2-preview.10)
 
 **Documentation and other chores:**
 
