@@ -10,8 +10,7 @@
 
 | Component | Build Status | NuGet Package |
 |:-|---|---|
-| nanoFramework.TI.EasyLink | [![Build Status](https://dev.azure.com/nanoframework/nanoFramework.TI.EasyLink/_apis/build/status/nanoframework.lib-nanoFramework.TI.EasyLink?branchName=main)](https://dev.azure.com/nanoframework/nanoFramework.TI.EasyLink/_build/latest?definitionId=51&branchName=main) | [![NuGet](https://img.shields.io/nuget/v/nanoFramework.TI.EasyLink.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.TI.EasyLink/) |
-| nanoFramework.TI.EasyLink (preview) | [![Build Status](https://dev.azure.com/nanoframework/nanoFramework.TI.EasyLink/_apis/build/status/nanoframework.lib-nanoFramework.TI.EasyLink?branchName=develop)](https://dev.azure.com/nanoframework/nanoFramework.TI.EasyLink/_build/latest?definitionId=51&branchName=develop) | [![NuGet](https://img.shields.io/nuget/vpre/nanoFramework.TI.EasyLink.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.TI.EasyLink/) |
+| nanoFramework.TI.EasyLink | [![Build Status](https://dev.azure.com/nanoframework/nanoFramework.TI.EasyLink/_apis/build/status/nanoFramework.TI.EasyLink?repoName=nanoframework%2FnanoFramework.TI.EasyLink&branchName=main)](https://dev.azure.com/nanoframework/nanoFramework.TI.EasyLink/_build/latest?definitionId=51&repoName=nanoframework%2FnanoFramework.TI.EasyLink&branchName=main) | [![NuGet](https://img.shields.io/nuget/v/nanoFramework.TI.EasyLink.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.TI.EasyLink/) |
 
 ## Feedback and documentation
 
