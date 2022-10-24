@@ -1,7 +1,6 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "nanoFramework.TI.EasyLink", "nanoFramework.TI.EasyLink\nanoFramework.TI.EasyLink.nfproj", "{0ECD244B-3715-49AB-98F1-BEB907007B13}"
 EndProject
