@@ -181,7 +181,6 @@ namespace nanoFramework.TI.EasyLink
         /// </summary>
         /// <param name="packet">The <see cref="TransmitPacket"/> to be transmitted.</param>
         /// <param name="timeout">The timeout value for the transmission operation to complete successfully.</param>
-        /// <param name="dueTime"> The amount of time to delay before starting the transmission.</param>
         /// <returns>The operation result.</returns>
         public Status Transmit(TransmitPacket packet, TimeSpan timeout)
         {
